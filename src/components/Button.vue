@@ -2,16 +2,18 @@
     <button @click="this.click">Submit</button>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
   name: 'Button',
   props: {
     click: Function
   }
-}
+})
 </script>
 
-<style scoped>
+<style lang="less" scoped>
   button {
     width: 100px;
     height: 30px;
@@ -23,11 +25,11 @@ export default {
     background: rgb(8, 167, 140);
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
     cursor: pointer;
-  }
-  button:hover {
-    background: rgba(8, 167, 140, 0.7);
-  }
-  button:active {
-    box-shadow: none;
+    &:hover {
+      background: rgba(8, 167, 140, 0.7);
+    }
+    &:active {
+      box-shadow: none;
+    }
   }
 </style>

@@ -4,13 +4,15 @@
   </form>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
   name: 'Form'
-}
+})
 </script>
 
-<style scoped>
+<style lang="less" scoped>
   form {
     display: flex;
     flex-direction: column;

@@ -1,12 +1,19 @@
 <template>
   <div>
     <label :for="type">{{label}}</label>
-    <input type="text" :name="type" :id="type" v-model="value" @keyup="saveInputValue">
+    <input
+      type="text"
+      :name="type"
+      :id="type"
+      v-model="value"
+    >
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
   name: 'Input',
   props: {
     type: String,
@@ -17,33 +24,34 @@ export default {
       value: ''
     }
   },
-  methods: {
-    saveInputValue () {
-      this.$store.state[this.type] = this.value
+  watch: {
+    value: function (value) {
+      const input: object = { value, type: this.type }
+      this.$store.dispatch('UPDATE_INPUT_VALUE', input)
     }
   }
-}
+})
 </script>
 
-<style scoped>
+<style lang="less" scoped>
   div {
     display: flex;
     flex-direction: column;
     margin-bottom: 15px;
-  }
-  label {
-    margin-bottom: 10px;
-    color: rgba(0, 0, 0, 0.5);
-    font-size: 14px;
-    text-align: left;
-  }
-  input {
-    border: none;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
-    background: rgba(221, 220, 220, 0.1);
-    cursor: pointer;
-  }
-  input:hover, input:focus {
-    border-bottom: 2px solid rgb(8, 167, 140);
+    label {
+      margin-bottom: 10px;
+      color: rgba(0, 0, 0, 0.5);
+      font-size: 14px;
+      text-align: left;
+    }
+    input {
+      border: none;
+      border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+      background: transparent;
+      cursor: pointer;
+      &:hover, &:focus {
+        border-bottom: 2px solid rgb(8, 167, 140);
+      }
+    }
   }
 </style>

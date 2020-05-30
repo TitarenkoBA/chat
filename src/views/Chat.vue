@@ -5,13 +5,13 @@
     </Form>
     <Form>
       <p>{{dialog[0].name}}</p>
-      <DisplayChatMessages />
+      <DisplayChatMessages type="first" />
       <TextArea type="textareaFirst" placeholder="Enter your message here" />
       <Button :click="submit" />
     </Form>
     <Form>
       <p>{{dialog[1].name}}</p>
-      <DisplayChatMessages />
+      <DisplayChatMessages type="second" />
       <TextArea type="textareaSecond" placeholder="Enter your message here" />
       <Button :click="submitReverse" />
     </Form>
@@ -49,7 +49,6 @@ export default Vue.extend({
     submitFlag: function (value) {
       if (value === 1) {
         this.submit()
-        this.$store.state.Submit = null
       } else if (value === 2) {
         this.submitReverse()
       }
@@ -58,16 +57,12 @@ export default Vue.extend({
   methods: {
     submit () {
       if (this.$store.state.CurrentMessage) {
-        this.$store.state.Messages.push({ messageType: 'sentMessage', message: this.$store.state.CurrentMessage })
-        document.querySelector('#textareaFirst').value = ''
-        this.$store.state.Submit = null
+        this.$store.dispatch('SUBMIT', 'sentMessage')
       }
     },
     submitReverse () {
       if (this.$store.state.CurrentMessage) {
-        this.$store.state.Messages.push({ messageType: 'recievedMessage', message: this.$store.state.CurrentMessage })
-        document.querySelector('#textareaSecond').value = ''
-        this.$store.state.Submit = null
+        this.$store.dispatch('SUBMIT', 'recievedMessage')
       }
     }
   }
@@ -82,13 +77,24 @@ export default Vue.extend({
     justify-content: space-between;
     Form {
       width: 38%;
+      &:first-child {
+        width: 20%;
+        margin-right: 2%;
+      }
+      &:last-child {
+        margin-left: 2%;
+      }
     }
-    Form:first-child {
-      width: 20%;
-      margin-right: 2%;
-    }
-    Form:last-child {
-      margin-left: 2%;
+    @media screen and (max-width: 650px) {
+      flex-direction: column;
+      justify-content: flex-start;
+      width: 90%;
+      margin: auto;
+      Form {
+        width: 90% !important;
+        min-height: 200px !important;
+        margin: auto !important;
+      }
     }
   }
 </style>

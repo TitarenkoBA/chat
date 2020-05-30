@@ -23,16 +23,7 @@ export default Vue.extend({
   },
   methods: {
     enterChat () {
-      const login: string | null = this.$store.state.Login
-      const avatarLink: string | null = this.$store.state.AvatarLink
-      this.$store.state.User = { login, avatarLink }
-      interface User {
-        name: string | null;
-        id: string;
-      }
-      const users: Array<User> = [...this.$store.state.Contacts]
-      users[0].name = login
-      this.$store.state.Contacts = [...users]
+      this.$store.dispatch('ENTER_CHAT')
       this.$router.push('/Chat')
     }
   }

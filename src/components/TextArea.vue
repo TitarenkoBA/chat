@@ -1,9 +1,18 @@
 <template>
-  <textarea :name="type" :id="type" :placeholder="placeholder" v-model="value" @keydown.ctrl.enter="submit"></textarea>
+  <textarea
+    :name="type"
+    :id="type"
+    :placeholder="placeholder"
+    v-model="value"
+    @keydown.ctrl.enter="submit"
+  >
+  </textarea>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
   name: 'TextArea',
   props: {
     type: String,
@@ -16,22 +25,22 @@ export default {
   },
   watch: {
     value: function (value) {
-      this.$store.state.CurrentMessage = value
+      this.$store.dispatch('UPDATE_TEXTAREA_VALUE', value)
     }
   },
   methods: {
     submit () {
       if (this.type === 'textareaFirst') {
-        this.$store.state.Submit = 1
+        this.$store.dispatch('UPDATE_SUBMIT_FLAG', 1)
       } else {
-        this.$store.state.Submit = 2
+        this.$store.dispatch('UPDATE_SUBMIT_FLAG', 2)
       }
     }
   }
-}
+})
 </script>
 
-<style scoped>
+<style lang="less" scoped>
   textarea {
     width: 90%;
     height: 10vh;
@@ -40,8 +49,8 @@ export default {
     border: 2px solid rgba(0, 0, 0, 0.2);
     border-radius: 0 10px 10px 10px;
     cursor: pointer;
-  }
-  textarea:focus {
-    border-color:  rgb(8, 167, 140);
+    &:focus {
+      border-color:  rgb(8, 167, 140);
+    }
   }
 </style>
