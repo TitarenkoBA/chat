@@ -13,21 +13,30 @@ export default new Vuex.Store({
       avatarLink: ''
     },
     Contacts: [{ name: '', id: 1 }, { name: 'Ivan Ivanov', id: 2 }],
-    CurrentMessage: null,
-    Messages: []
+    CurrentMessage: '',
+    // eslint-disable-next-line
+    Messages: Array<any>()
   },
   mutations: {
     SUBMIT (state, messageType) {
       interface Message {
         messageType: string;
-        message: string | null;
+        message: string;
       }
       const message: Message = { messageType: messageType, message: state.CurrentMessage }
-      state.Messages.push(message)
-      document.querySelector('#textareaFirst').value = ''
-      document.querySelector('#textareaSecond').value = ''
+      const messages: Message[] = [...state.Messages]
+      messages.push(message)
+      state.Messages = [...messages]
+      const textareaFirst: HTMLInputElement | null = document.querySelector('#textareaFirst')
+      const textareaSecond: HTMLInputElement | null = document.querySelector('#textareaSecond')
+      if (textareaFirst) {
+        textareaFirst.value = ''
+      }
+      if (textareaSecond) {
+        textareaSecond.value = ''
+      }
       state.Submit = null
-      state.CurrentMessage = null
+      state.CurrentMessage = ''
     },
     ENTER_CHAT (state) {
       const login: string | null = state.Login
@@ -48,7 +57,11 @@ export default new Vuex.Store({
       state.Submit = value
     },
     UPDATE_INPUT_VALUE (state, input) {
-      state[input.type] = input.value
+      if (input.type === 'Login') {
+        state.Login = input.value
+      } else {
+        state.AvatarLink = input.value
+      }
     }
   },
   actions: {
