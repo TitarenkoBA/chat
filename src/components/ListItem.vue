@@ -1,5 +1,5 @@
 <template>
-  <li>{{contact}}</li>
+  <li>{{contact.name}}</li>
 </template>
 
 <script>

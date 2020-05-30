@@ -2,7 +2,7 @@
   <div>
     <p>Contacts</p>
     <ul>
-      <ListItem v-for="(contact, index) in contacts" :key="index" :contact="contact"/>
+      <ListItem v-for="contact in contacts" :key="contact.id" :contact="contact"/>
     </ul>
   </div>
 </template>

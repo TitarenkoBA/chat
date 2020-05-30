@@ -1,10 +1,13 @@
 <template>
-    <button>Submit</button>
+    <button @click="this.click">Submit</button>
 </template>
 
 <script>
 export default {
-  name: 'Button'
+  name: 'Button',
+  props: {
+    click: Function
+  }
 }
 </script>
 

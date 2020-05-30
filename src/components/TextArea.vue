@@ -1,5 +1,5 @@
 <template>
-  <textarea :name="type" :id="type" :placeholder="placeholder"></textarea>
+  <textarea :name="type" :id="type" :placeholder="placeholder" v-model="value" @keydown.ctrl.enter="submit"></textarea>
 </template>
 
 <script>
@@ -8,6 +8,25 @@ export default {
   props: {
     type: String,
     placeholder: String
+  },
+  data () {
+    return {
+      value: ''
+    }
+  },
+  watch: {
+    value: function (value) {
+      this.$store.state.CurrentMessage = value
+    }
+  },
+  methods: {
+    submit () {
+      if (this.type === 'textareaFirst') {
+        this.$store.state.Submit = 1
+      } else {
+        this.$store.state.Submit = 2
+      }
+    }
   }
 }
 </script>

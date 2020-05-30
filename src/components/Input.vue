@@ -1,7 +1,7 @@
 <template>
   <div>
     <label :for="type">{{label}}</label>
-    <input type="text" :name="type" :id="type">
+    <input type="text" :name="type" :id="type" v-model="value" @keyup="saveInputValue">
   </div>
 </template>
 
@@ -11,6 +11,16 @@ export default {
   props: {
     type: String,
     label: String
+  },
+  data () {
+    return {
+      value: ''
+    }
+  },
+  methods: {
+    saveInputValue () {
+      this.$store.state[this.type] = this.value
+    }
   }
 }
 </script>

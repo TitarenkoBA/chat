@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="displayChatMessages">
     <p v-for="(message, index) in messages" :key="index" :class="message.messageType">{{message.message}}</p>
   </div>
 </template>
@@ -11,12 +11,18 @@ export default {
     messages () {
       return this.$store.state.Messages
     }
+  },
+  updated () {
+    const displaysChatMessages = document.querySelectorAll('.displayChatMessages')
+    displaysChatMessages.forEach((elem) => {
+      elem.scrollTop = elem.scrollHeight
+    })
   }
 }
 </script>
 
 <style scoped>
-  div {
+  .displayChatMessages {
     display: block !important;
     width: 90%;
     height: 50%;
@@ -28,25 +34,31 @@ export default {
   .sentMessage {
     max-width: 70%;
     min-height: 30px;
+    float: left;
+    clear: both;
     padding: 5px;
-    margin: 0 auto 5px 0;
+    margin: 5px;
     box-sizing: border-box;
     border-radius: 0 10px 10px 10px;
     color: white;
     font-size: 14px;
     text-align: center;
+    word-wrap: break-word;
     background: rgb(8, 167, 140);
   }
   .recievedMessage {
     max-width: 70%;
     min-height: 30px;
+    float: right;
+    clear: both;
     padding: 5px;
-    margin: 0 0 5px auto;
+    margin: 5px;
     box-sizing: border-box;
     border-radius: 10px 0 10px 10px;
     color: white;
     font-size: 14px;
     text-align: center;
-    background: rgba(8, 167, 140, 0.5);
+    word-wrap: break-word;
+    background: rgb(0, 100, 84);
   }
 </style>
