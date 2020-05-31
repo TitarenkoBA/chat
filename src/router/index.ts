@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 import Home from '../views/Home.vue'
+import Chat from '../views/Chat.vue'
 
 Vue.use(VueRouter)
 
@@ -13,7 +14,7 @@ const routes: Array<RouteConfig> = [
   {
     path: '/Chat',
     name: 'Chat',
-    component: () => import('../views/Chat.vue')
+    component: Chat
   }
 ]
 

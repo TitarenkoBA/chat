@@ -70,31 +70,31 @@ export default Vue.extend({
 </script>
 
 <style lang="less" scoped>
-  div {
-    height: 90vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    Form {
-      width: 38%;
-      &:first-child {
-        width: 20%;
-        margin-right: 2%;
-      }
-      &:last-child {
-        margin-left: 2%;
-      }
+div {
+  height: 90vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  Form {
+    width: 38%;
+    &:first-child {
+      width: 20%;
+      margin-right: 2%;
     }
-    @media screen and (max-width: 650px) {
-      flex-direction: column;
-      justify-content: flex-start;
-      width: 90%;
-      margin: auto;
-      Form {
-        width: 90% !important;
-        min-height: 200px !important;
-        margin: auto !important;
-      }
+    &:last-child {
+      margin-left: 2%;
     }
   }
+  @media screen and (max-width: 650px) {
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 90%;
+    margin: auto;
+    Form {
+      width: 90% !important;
+      min-height: 200px !important;
+      margin: auto !important;
+    }
+  }
+}
 </style>

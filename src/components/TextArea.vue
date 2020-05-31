@@ -41,16 +41,16 @@ export default Vue.extend({
 </script>
 
 <style lang="less" scoped>
-  textarea {
-    width: 90%;
-    height: 10vh;
-    margin: 10px auto;
-    border: none;
-    border: 2px solid rgba(0, 0, 0, 0.2);
-    border-radius: 0 10px 10px 10px;
-    cursor: pointer;
-    &:focus {
-      border-color:  rgb(8, 167, 140);
-    }
+textarea {
+  width: 90%;
+  height: 10vh;
+  margin: 10px auto;
+  border: none;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0 10px 10px 10px;
+  cursor: pointer;
+  &:focus {
+    border-color:  rgb(8, 167, 140);
   }
+}
 </style>
